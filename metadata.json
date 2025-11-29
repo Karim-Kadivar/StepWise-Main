@@ -1,0 +1,9 @@
+{
+  "name": "StepWise Main",
+  "description": "A modern, global, student-friendly career guidance platform powered by Gemini AI.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}

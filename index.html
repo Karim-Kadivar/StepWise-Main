@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>StepWise - Future Ready</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        pacifico: ['Pacifico', 'cursive'],
+                    },
+                    colors: {
+                        indigo: '#3B2CCF',
+                        royal: '#2E6CF0',
+                        sky: '#2EA8F8',
+                        cyan: '#1EC9D6',
+                        primary: '#2E6CF0',
+                        secondary: '#2EA8F8',
+                    },
+                    borderRadius: {
+                        'button': '12px'
+                    },
+                    animation: {
+                        'slide-up': 'slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                        'fade-in': 'fadeIn 0.6s ease-out forwards',
+                        'pulse-slow': 'pulse 3s infinite',
+                        'scale-in': 'scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                    },
+                    keyframes: {
+                        slideUp: {
+                            '0%': { opacity: 0, transform: 'translateY(40px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        fadeIn: {
+                            '0%': { opacity: 0 },
+                            '100%': { opacity: 1 }
+                        },
+                        scaleIn: {
+                            '0%': { opacity: 0, transform: 'scale(0.9)' },
+                            '100%': { opacity: 1, transform: 'scale(1)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+      body { font-family: 'Poppins', sans-serif; }
+      html { scroll-behavior: smooth; }
+      
+      .gradient-bg {
+          background: linear-gradient(135deg, #3B2CCF 0%, #2E6CF0 33%, #2EA8F8 66%, #1EC9D6 100%);
+      }
+      .gradient-text {
+          background: linear-gradient(135deg, #3B2CCF 0%, #2E6CF0 33%, #2EA8F8 66%, #1EC9D6 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+      }
+      .card-hover {
+          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .card-hover:hover {
+          transform: translateY(-8px) scale(1.02);
+          box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      }
+      .btn-hover {
+        transition: all 0.2s ease;
+      }
+      .btn-hover:active {
+        transform: scale(0.95);
+      }
+      .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      
+      /* Initial state for scroll animation */
+      .reveal-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      
+      .reveal-on-scroll.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Tool Specific Gradients */
+      .resucraft-bg { background: linear-gradient(135deg, #4F46E5 0%, #818CF8 100%); }
+      .playlab-bg { background: linear-gradient(135deg, #EC4899 0%, #F472B6 100%); }
+      .quizwise-bg { background: linear-gradient(135deg, #F59E0B 0%, #FCD34D 100%); }
+      .wisebot-bg { background: linear-gradient(135deg, #10B981 0%, #6EE7B7 100%); }
+      .mentormate-bg { background: linear-gradient(135deg, #3B82F6 0%, #93C5FD 100%); }
+      .wisevault-bg { background: linear-gradient(135deg, #8B5CF6 0%, #C4B5FD 100%); }
+      
+      .resucraft-shadow:hover { box-shadow: 0 20px 40px rgba(79, 70, 229, 0.3); }
+      .playlab-shadow:hover { box-shadow: 0 20px 40px rgba(236, 72, 153, 0.3); }
+      .quizwise-shadow:hover { box-shadow: 0 20px 40px rgba(245, 158, 11, 0.3); }
+      .wisebot-shadow:hover { box-shadow: 0 20px 40px rgba(16, 185, 129, 0.3); }
+      .mentormate-shadow:hover { box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3); }
+      .wisevault-shadow:hover { box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3); }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "lottie-react": "https://esm.sh/lottie-react@2.4.0?external=react,react-dom"
+  }
+}
+</script>
+</head>
+  <body class="bg-slate-900 text-white antialiased selection:bg-indigo-500 selection:text-white overflow-x-hidden">
+    <div id="root"></div>
+  </body>
+</html>
