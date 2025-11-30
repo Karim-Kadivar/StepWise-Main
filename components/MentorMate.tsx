@@ -1,4 +1,5 @@
 
+
 import React, { useState } from 'react';
 
 const mentors = [
@@ -91,6 +92,51 @@ const mentors = [
         careerJourney: "Data analyst to ML engineer.",
         availability: "Schedule",
         languages: ["English"],
+        pricing: "Free"
+    },
+    {
+        id: 7,
+        name: "Sarah Chen",
+        photo: "https://randomuser.me/api/portraits/women/75.jpg",
+        expertise: "Product Management",
+        experience: 9,
+        rating: 4.9,
+        tags: [{text: "Agile Expert", color: "from-rose-500 to-rose-700"}, {text: "Roadmap Strategy", color: "from-violet-500 to-violet-700"}],
+        bio: "Seasoned Product Manager with a track record of launching successful B2B SaaS products from ideation to scale.",
+        achievements: "Grew user base by 300% for a major tech product, Certified Scrum Master.",
+        careerJourney: "Started in marketing, discovered a passion for user-centric products and pivoted to product management.",
+        availability: "Schedule",
+        languages: ["English", "Mandarin"],
+        pricing: "Paid"
+    },
+    {
+        id: 8,
+        name: "Omar Ahmed",
+        photo: "https://randomuser.me/api/portraits/men/78.jpg",
+        expertise: "Cybersecurity",
+        experience: 11,
+        rating: 4.7,
+        tags: [{text: "Ethical Hacker", color: "from-slate-500 to-slate-700"}, {text: "Cloud Security", color: "from-sky-500 to-sky-700"}],
+        bio: "Cybersecurity expert specializing in threat intelligence and securing cloud infrastructure on AWS and Azure.",
+        achievements: "CISSP Certified, discovered critical vulnerabilities in major financial systems.",
+        careerJourney: "From IT support to a lead security architect, passionate about protecting digital assets.",
+        availability: "Instant Chat",
+        languages: ["English", "Arabic"],
+        pricing: "Paid"
+    },
+    {
+        id: 9,
+        name: "Isabella Rossi",
+        photo: "https://randomuser.me/api/portraits/women/85.jpg",
+        expertise: "Creative Writing",
+        experience: 6,
+        rating: 4.6,
+        tags: [{text: "Novelist", color: "from-amber-500 to-amber-700"}, {text: "Editing Pro", color: "from-lime-500 to-lime-700"}],
+        bio: "Published author and editor helping aspiring writers find their voice and navigate the publishing industry.",
+        achievements: "Award-winning debut novel, regular contributor to a literary magazine.",
+        careerJourney: "Began as a freelance writer, now a published author and dedicated mentor.",
+        availability: "Schedule",
+        languages: ["English", "Italian"],
         pricing: "Free"
     }
 ];
