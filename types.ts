@@ -25,6 +25,7 @@ export interface Message {
   id: string;
   role: 'user' | 'model';
   text: string;
+  image?: string; // Optional field for image base64 data
   isLoading?: boolean;
   groundingUrls?: Array<{uri: string, title: string}>;
 }

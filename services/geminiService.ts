@@ -23,24 +23,52 @@ export const getThinkingCareerAdvice = async (
 };
 
 export const getQuickChatResponse = async (
-  history: { role: string; parts: { text: string }[] }[],
-  message: string
+  history: { role: string; parts: ( { text: string } | { inlineData: { mimeType: string, data: string } } )[] }[],
+  message: string,
+  imageBase64?: string | null
 ) => {
   try {
+    const userParts: ( { text: string } | { inlineData: { mimeType: string, data: string } } )[] = [{ text: message }];
+    if (imageBase64) {
+        userParts.unshift({
+            inlineData: {
+                mimeType: 'image/jpeg', // Assuming jpeg, adjust if needed
+                data: imageBase64,
+            }
+        });
+    }
+
     const chat = ai.chats.create({
-      model: "gemini-2.5-flash-lite", // Fast responses as requested
+      model: "gemini-3-pro-preview", // Upgraded for multimodal capabilities
       history: history,
       config: {
-        systemInstruction: "You are WiseBot, a helpful, encouraging career mentor on StepWise. Keep responses concise and motivating.",
+        systemInstruction: `You are WiseBot, a helpful, encouraging career mentor on StepWise. Keep responses concise and motivating. When relevant, suggest 1-2 follow-up questions formatted like this: [Follow-up: "Your question here?"].`,
       }
     });
-    const result = await chat.sendMessage({ message });
+
+    // FIX: The `sendMessage` method expects an object with a `message` property containing the parts.
+    const result = await chat.sendMessage({ message: userParts });
     return result.text;
   } catch (error) {
     console.error("Chat Error:", error);
     throw error;
   }
 };
+
+export const generateCareerPrompts = async (stage: string) => {
+    try {
+        const response = await ai.models.generateContent({
+            model: "gemini-flash-lite-latest",
+            contents: `Generate 3 short, engaging, and relevant starter questions a user in the "${stage}" stage of their career might ask. Return as a JSON array of strings. Example: ["Compare career paths", "What skills do I need?"]`,
+            config: { responseMimeType: "application/json" }
+        });
+        return JSON.parse(response.text);
+    } catch (error) {
+        console.error("Prompt Generation Error:", error);
+        return ["What are my career options?", "How can I improve my skills?", "Compare two career paths"];
+    }
+};
+
 
 // --- CompareWise (Text Comparison) ---
 export const compareCareers = async (topicA: string, topicB: string) => {

@@ -1,4 +1,5 @@
 
+
 import React, { useState, useEffect, useRef } from 'react';
 import { UserStage, ToolType } from './types';
 import { WiseBot } from './components/WiseBot';
@@ -15,11 +16,11 @@ import { LottiePlayer } from './components/LottiePlayer';
 import { StreamSprint } from './components/StreamSprint';
 
 const stages = [
-  { id: UserStage.StreamSprint, title: 'StreamSprint', subtitle: '11th-12th Grade', icon: 'ri-rocket-2-line', color: 'from-indigo-500 to-purple-600' },
-  { id: UserStage.CourseCompass, title: 'CourseCompass', subtitle: 'College Students', icon: 'ri-compass-3-line', color: 'from-blue-500 to-cyan-500' },
-  { id: UserStage.SkillBridge, title: 'SkillBridge', subtitle: 'Post Graduates', icon: 'ri-building-4-line', color: 'from-orange-500 to-amber-500' },
-  { id: UserStage.RoleRadar, title: 'RoleRadar', subtitle: 'Job Seekers', icon: 'ri-focus-3-line', color: 'from-emerald-400 to-teal-500' },
-  { id: UserStage.CareerPivot, title: 'CareerPivot', subtitle: 'Career Switchers', icon: 'ri-loop-right-line', color: 'from-rose-500 to-pink-600' },
+  { id: UserStage.StreamSprint, title: 'StreamSprint', subtitle: '11th-12th Grade', icon: 'ri-rocket-2-line', color: 'from-indigo-500 to-purple-600', borderColor: 'hover:border-indigo-500/50' },
+  { id: UserStage.CourseCompass, title: 'CourseCompass', subtitle: 'College Students', icon: 'ri-compass-3-line', color: 'from-blue-500 to-cyan-500', borderColor: 'hover:border-blue-500/50' },
+  { id: UserStage.SkillBridge, title: 'SkillBridge', subtitle: 'Post Graduates', icon: 'ri-building-4-line', color: 'from-orange-500 to-amber-500', borderColor: 'hover:border-orange-500/50' },
+  { id: UserStage.RoleRadar, title: 'RoleRadar', subtitle: 'Job Seekers', icon: 'ri-focus-3-line', color: 'from-emerald-400 to-teal-500', borderColor: 'hover:border-emerald-500/50' },
+  { id: UserStage.CareerPivot, title: 'CareerPivot', subtitle: 'Career Switchers', icon: 'ri-loop-right-line', color: 'from-rose-500 to-pink-600', borderColor: 'hover:border-rose-500/50' },
 ];
 
 const tools = [
@@ -171,24 +172,33 @@ function App() {
             <section id="features" className="py-24 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-indigo-900/10 to-slate-900 pointer-events-none"></div>
                 <div className="max-w-7xl mx-auto px-6 relative z-10">
-                    <h2 className="text-5xl font-bold text-center mb-16 reveal-on-scroll">Where Are You On Your <span className="gradient-text">Journey?</span></h2>
+                    <div className="text-center mb-16 reveal-on-scroll">
+                        <h2 className="text-5xl font-bold mb-4">Where Are You On Your <span className="gradient-text">Journey?</span></h2>
+                        <p className="text-slate-400">Tailored guidance for every stage.</p>
+                    </div>
                     
                     {/* Horizontal Scroll Container */}
-                    <div className="flex overflow-x-auto gap-8 pb-12 snap-x hide-scrollbar px-4 lg:justify-center">
+                    <div className="flex overflow-x-auto gap-8 pb-16 snap-x hide-scrollbar px-4 sm:px-6 lg:px-8 lg:justify-center">
                         {stages.map((stage, i) => (
                             <div 
                                 key={stage.id} 
                                 onClick={() => setActiveStage(stage.id)}
-                                className="min-w-[320px] md:min-w-[380px] bg-slate-800/60 backdrop-blur-md border border-slate-700 p-8 rounded-[2rem] transition-all cursor-pointer group hover:shadow-[0_20px_60px_rgba(59,130,246,0.2)] hover:-translate-y-2 relative overflow-hidden snap-center flex-shrink-0"
+                                className={`reveal-on-scroll min-w-[340px] md:min-w-[400px] bg-slate-800/60 backdrop-blur-md border border-slate-700 p-8 rounded-[2rem] transition-all duration-500 cursor-pointer group hover:shadow-2xl ${stage.borderColor} hover:-translate-y-2 relative overflow-hidden snap-center flex flex-col`}
+                                style={{ transitionDelay: `${i * 100}ms` }}
                             >
                                 <div className="absolute -top-10 -right-10 p-4 opacity-5 group-hover:opacity-10 transition-opacity rotate-12"><i className={`${stage.icon} text-[10rem]`}></i></div>
+                                
                                 <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${stage.color} flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-6 transition-transform shadow-xl`}>
                                     <i className={`${stage.icon} text-4xl text-white`}></i>
                                 </div>
-                                <h3 className="text-2xl font-bold mb-2 text-white">{stage.subtitle}</h3>
-                                <h4 className={`text-xl font-bold bg-gradient-to-r ${stage.color} bg-clip-text text-transparent mb-6`}>{stage.title}</h4>
-                                <p className="text-slate-400 text-sm mb-8 relative z-10 leading-relaxed group-hover:text-slate-300">Tailored guidance specifically for this stage.</p>
-                                <button className="text-sm font-bold text-white flex items-center gap-2 bg-white/5 px-6 py-3 rounded-full hover:bg-white/10 w-fit transition-all group-hover:gap-3">
+                                
+                                <div className="flex-grow">
+                                    <h3 className="text-2xl font-bold mb-2 text-white">{stage.subtitle}</h3>
+                                    <h4 className={`text-xl font-bold bg-gradient-to-r ${stage.color} bg-clip-text text-transparent mb-6`}>{stage.title}</h4>
+                                    <p className="text-slate-400 text-sm mb-8 relative z-10 leading-relaxed group-hover:text-slate-300">Tailored guidance specifically for this stage.</p>
+                                </div>
+                                
+                                <button className="text-sm font-bold text-white flex items-center gap-2 bg-white/5 px-6 py-3 rounded-full hover:bg-white/10 w-fit transition-all group-hover:gap-3 mt-4">
                                     Explore Path <i className="ri-arrow-right-line"></i>
                                 </button>
                             </div>
